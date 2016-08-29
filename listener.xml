@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program_infos>
+<program>
+<name>top</name>
+<event>PROCESS_STATE_FATAL</event>
+<method>DING</method>
+</program>
+</program_infos> 
