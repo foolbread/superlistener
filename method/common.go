@@ -4,5 +4,6 @@
 package method
 
 type NotifyMethod interface {
-	Notify(eventname string, data []byte)
+	AddNotify(eventname string, program string)
+	DoNotify(eventname string, data []byte)
 }
