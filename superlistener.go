@@ -1,6 +1,6 @@
 //@auther foolbread
 //@time 2016-08-29
-//@file superlistener/main.go
+//@file superlistener/superlistener.go
 package main
 
 import (
