@@ -26,6 +26,8 @@ func InitListener() {
 		//define by yourself
 		}
 	}
+
+	go g_listener.run()
 }
 
 var g_listener *supervisorListener = newSupervisorListener()
