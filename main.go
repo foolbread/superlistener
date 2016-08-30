@@ -6,7 +6,10 @@ package main
 import (
 	"flag"
 	"superlistener/config"
+	"superlistener/listener"
 	"superlistener/log"
+
+	"runtime"
 )
 
 var conf string
@@ -17,8 +20,11 @@ func init() {
 
 	config.InitConfig(conf)
 	log.InitLog(config.GetConfig().GetLogFile())
+	listener.InitListener()
 }
 
 func main() {
+	runtime.GOMAXPROCS(runtime.NumCPU())
 
+	select {}
 }
