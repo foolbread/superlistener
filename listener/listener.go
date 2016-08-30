@@ -8,10 +8,10 @@ import (
 	"fmt"
 	"os"
 
-	"superlistener/config"
-	"superlistener/log"
-	"superlistener/method"
-	"superlistener/protocol"
+	"github.com/foolbread/superlistener/config"
+	"github.com/foolbread/superlistener/log"
+	"github.com/foolbread/superlistener/method"
+	"github.com/foolbread/superlistener/protocol"
 )
 
 const (
@@ -69,7 +69,7 @@ func (l *supervisorListener) run() {
 		e, ok := l.eventmap[head.Eventname]
 		if ok {
 			for _, v := range e {
-				go v.Notify(head.Eventname, data[:head.Playloadlen])
+				go v.DoNotify(head.Eventname, data[:head.Playloadlen])
 			}
 		}
 

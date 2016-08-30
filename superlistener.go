@@ -5,9 +5,10 @@ package main
 
 import (
 	"flag"
-	"superlistener/config"
-	"superlistener/listener"
-	"superlistener/log"
+
+	"github.com/foolbread/superlistener/config"
+	"github.com/foolbread/superlistener/listener"
+	"github.com/foolbread/superlistener/log"
 
 	"runtime"
 )
