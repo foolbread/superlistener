@@ -3,6 +3,6 @@
 <program>
 <name>top</name>
 <event>PROCESS_STATE_FATAL</event>
-<method>DING</method>
+<method>EMAIL</method>
 </program>
 </program_infos> 
