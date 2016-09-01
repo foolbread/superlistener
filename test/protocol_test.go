@@ -135,3 +135,24 @@ func Test_ProcessStateStopped(t *testing.T) {
 		t.Error("pid parse error!")
 	}
 }
+
+func Test_ProcessStateUnknown(t *testing.T) {
+	var tdata string = "processname:cat groupname:cat from_state:BACKOFF"
+	p, err := protocol.Unmarshal(protocol.PROCESS_STATE_UNKNOWN, tdata)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	pa := p.(*protocol.ProcessStateUnknown)
+	if !strings.EqualFold(pa.ProcessName, "cat") {
+		t.Error("processname parse error!")
+	}
+
+	if !strings.EqualFold(pa.GroupName, "cat") {
+		t.Error("groupname parse error!")
+	}
+
+	if !strings.EqualFold(pa.FromState, "BACKOFF") {
+		t.Error("from_state parse error!")
+	}
+}
