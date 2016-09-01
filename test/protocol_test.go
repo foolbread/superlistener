@@ -81,3 +81,57 @@ func Test_ProcessStateStopping(t *testing.T) {
 		t.Error("pid parse error!")
 	}
 }
+
+func Test_ProcessStateExited(t *testing.T) {
+	var tdata string = "processname:cat groupname:cat from_state:RUNNING expected:0 pid:2766"
+	p, err := protocol.Unmarshal(protocol.PROCESS_STATE_EXITED, tdata)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	pa := p.(*protocol.ProcessStateExited)
+	if !strings.EqualFold(pa.ProcessName, "cat") {
+		t.Error("processname parse error!")
+	}
+
+	if !strings.EqualFold(pa.GroupName, "cat") {
+		t.Error("groupname parse error!")
+	}
+
+	if !strings.EqualFold(pa.FromState, "RUNNING") {
+		t.Error("from_state parse error!")
+	}
+
+	if pa.Expected != 0 {
+		t.Error("expected parse error!")
+	}
+
+	if pa.Pid != 2766 {
+		t.Error("pid parse error!")
+	}
+}
+
+func Test_ProcessStateStopped(t *testing.T) {
+	var tdata string = "processname:cat groupname:cat from_state:STOPPING pid:2766"
+	p, err := protocol.Unmarshal(protocol.PROCESS_STATE_STOPPED, tdata)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	pa := p.(*protocol.ProcessStateStopped)
+	if !strings.EqualFold(pa.ProcessName, "cat") {
+		t.Error("processname parse error!")
+	}
+
+	if !strings.EqualFold(pa.GroupName, "cat") {
+		t.Error("groupname parse error!")
+	}
+
+	if !strings.EqualFold(pa.FromState, "STOPPING") {
+		t.Error("from_state parse error!")
+	}
+
+	if pa.Pid != 2766 {
+		t.Error("pid parse error!")
+	}
+}
