@@ -3,6 +3,10 @@
 //@file superlistener/protocol/common.go
 package protocol
 
+import (
+	"errors"
+)
+
 const (
 	EVENT                            = "EVENT"
 	PROCESS_STATE                    = "PROCESS_STATE"
@@ -34,7 +38,28 @@ const (
 )
 
 const (
-	HEAD_FIELD_CNT                  = 7
-	PROCESS_STATE_FATAL_FIELD_CNT   = 3
-	PROCESS_STATE_BACKOFF_FIELD_CNT = 4
+	HEAD_FIELD_CNT                   = 7
+	PROCESS_STATE_FATAL_FIELD_CNT    = 3
+	PROCESS_STATE_BACKOFF_FIELD_CNT  = 4
+	PROCESS_STATE_STARTING_FIELD_CNT = 4
 )
+
+func Unmarshal(event string, data string) (interface{}, error) {
+	var ret interface{} = nil
+	var err error = nil
+
+	switch event {
+	case PROCESS_STATE_STARTING:
+		ret = unmarshalProcessStateStarting(data)
+	case PROCESS_STATE_BACKOFF:
+		ret = unmarshalProcessStateBackoff(data)
+	case PROCESS_STATE_FATAL:
+		ret = unmarshalProcessStateFatal(data)
+	}
+
+	if ret == nil {
+		err = errors.New("unknow data,parse fail!")
+	}
+
+	return ret, err
+}

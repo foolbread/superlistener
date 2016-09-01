@@ -15,7 +15,7 @@ type ProcessStateBackoff struct {
 	Tries       int
 }
 
-func UnmarshalProcessStateBackoff(data string) *ProcessStateBackoff {
+func unmarshalProcessStateBackoff(data string) *ProcessStateBackoff {
 	fields := strings.Split(data, SPLIT_LINE)
 	if len(fields) != PROCESS_STATE_BACKOFF_FIELD_CNT {
 		return nil
