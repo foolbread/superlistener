@@ -44,6 +44,8 @@ const (
 	PROCESS_STATE_STARTING_FIELD_CNT = 4
 	PROCESS_STATE_RUNNING_FIELD_CNT  = 4
 	PROCESS_STATE_STOPPING_FIELD_CNT = 4
+	PROCESS_STATE_EXITED_FIELD_CNT   = 5
+	PROCESS_STATE_STOPPED_FIELD_CNT  = 4
 )
 
 func Unmarshal(event string, data string) (interface{}, error) {
@@ -57,6 +59,10 @@ func Unmarshal(event string, data string) (interface{}, error) {
 		ret = unmarshalProcessStateRunning(data)
 	case PROCESS_STATE_STOPPING:
 		ret = unmarshalProcessStateStopping(data)
+	case PROCESS_STATE_STOPPED:
+		ret = unmarshalProcessStateStopped(data)
+	case PROCESS_STATE_EXITED:
+		ret = unmarshalProcessStateExited(data)
 	case PROCESS_STATE_BACKOFF:
 		ret = unmarshalProcessStateBackoff(data)
 	case PROCESS_STATE_FATAL:
