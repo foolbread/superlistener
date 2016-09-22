@@ -157,7 +157,7 @@ func Test_ProcessStateUnknown(t *testing.T) {
 	}
 }
 
-func Test_ProcessRemoteCommunication(t *testing.T) {
+func Test_RemoteCommunication(t *testing.T) {
 	var tdata string = "type:type\ndata"
 	p, err := protocol.Unmarshal(protocol.REMOTE_COMMUNICATION, tdata)
 	if err != nil {
@@ -167,6 +167,31 @@ func Test_ProcessRemoteCommunication(t *testing.T) {
 	pa := p.(*protocol.RemoteCommunication)
 	if !strings.EqualFold(pa.Type, "type") {
 		t.Error("type parse error!")
+	}
+
+	if !strings.EqualFold(pa.Data, "data") {
+		t.Error("data parse error!")
+	}
+}
+
+func Test_ProcessLogStdout(t *testing.T) {
+	var tdata string = "processname:cat groupname:cat pid:2766\ndata"
+	p, err := protocol.Unmarshal(protocol.PROCESS_LOG_STDOUT, tdata)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	pa := p.(*protocol.ProcessLogStdout)
+	if !strings.EqualFold(pa.ProcessName, "cat") {
+		t.Error("processname parse error!")
+	}
+
+	if !strings.EqualFold(pa.GroupName, "cat") {
+		t.Error("groupname parse error!")
+	}
+
+	if pa.Pid != 2766 {
+		t.Error("pid parse error!")
 	}
 
 	if !strings.EqualFold(pa.Data, "data") {
