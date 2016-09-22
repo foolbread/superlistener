@@ -325,3 +325,16 @@ func Test_ProcessGroupAdded(t *testing.T) {
 		t.Error("groupname parse error!")
 	}
 }
+
+func Test_ProcessGroupRemoved(t *testing.T) {
+	var tdata string = "groupname:cat"
+	p, err := protocol.Unmarshal(protocol.PROCESS_GROUP_REMOVED, tdata)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	pa := p.(*protocol.ProcessGroupRemoved)
+	if !strings.EqualFold(pa.GroupName, "cat") {
+		t.Error("groupname parse error!")
+	}
+}
