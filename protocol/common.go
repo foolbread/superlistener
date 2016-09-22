@@ -47,11 +47,13 @@ const (
 	PROCESS_STATE_EXITED_FIELD_CNT   = 5
 	PROCESS_STATE_STOPPED_FIELD_CNT  = 4
 	PROCESS_STATE_UNKNOWN_FIELD_CNT  = 3
-	PROCESS_REMOTE_COMMUNICATION_CNT = 1
+	REMOTE_COMMUNICATION_CNT         = 1
+	PROCESS_LOG_STDOUT_CNT           = 3
 )
 
 const (
-	PROCESS_REMOTE_COMMUNICATION_LINE = 2
+	REMOTE_COMMUNICATION_LINE = 2
+	PROCESS_LOG_STDOUT_LINE   = 2
 )
 
 func Unmarshal(event string, data string) (interface{}, error) {
@@ -77,6 +79,8 @@ func Unmarshal(event string, data string) (interface{}, error) {
 		ret = unmarshalProcessStateUnknown(data)
 	case REMOTE_COMMUNICATION:
 		ret = unmarshalRemoteCommunication(data)
+	case PROCESS_LOG_STDOUT:
+		ret = unmarshalProcessLogStdout(data)
 	}
 
 	if ret == nil {
