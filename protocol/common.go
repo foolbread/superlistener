@@ -93,6 +93,8 @@ func Unmarshal(event string, data string) (interface{}, error) {
 		ret = unmarshalProcessCommunicationStdout(data)
 	case PROCESS_COMMUNICATION_STDERR:
 		ret = unmarshalProcessCommunicationStderr(data)
+	case TICK_5:
+		ret = unmarshalTick5(data)
 	}
 
 	if ret == nil {
