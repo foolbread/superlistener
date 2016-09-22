@@ -156,3 +156,20 @@ func Test_ProcessStateUnknown(t *testing.T) {
 		t.Error("from_state parse error!")
 	}
 }
+
+func Test_ProcessRemoteCommunication(t *testing.T) {
+	var tdata string = "type:type\ndata"
+	p, err := protocol.Unmarshal(protocol.REMOTE_COMMUNICATION, tdata)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	pa := p.(*protocol.RemoteCommunication)
+	if !strings.EqualFold(pa.Type, "type") {
+		t.Error("type parse error!")
+	}
+
+	if !strings.EqualFold(pa.Data, "data") {
+		t.Error("data parse error!")
+	}
+}
