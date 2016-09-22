@@ -299,3 +299,16 @@ func Test_Tick60(t *testing.T) {
 		t.Error("when parse error!")
 	}
 }
+
+func Test_Tick3600(t *testing.T) {
+	var tdata string = "when:1201063880"
+	p, err := protocol.Unmarshal(protocol.TICK_3600, tdata)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	pa := p.(*protocol.Tick3600)
+	if pa.When != 1201063880 {
+		t.Error("when parse error!")
+	}
+}
