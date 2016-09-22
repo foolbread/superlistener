@@ -97,6 +97,8 @@ func Unmarshal(event string, data string) (interface{}, error) {
 		ret = unmarshalTick5(data)
 	case TICK_60:
 		ret = unmarshalTick60(data)
+	case TICK_3600:
+		ret = unmarshalTick3600(data)
 	}
 
 	if ret == nil {
