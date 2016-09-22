@@ -99,6 +99,8 @@ func Unmarshal(event string, data string) (interface{}, error) {
 		ret = unmarshalTick60(data)
 	case TICK_3600:
 		ret = unmarshalTick3600(data)
+	case PROCESS_GROUP_ADDED:
+		ret = unmarshalProcessGroupAdded(data)
 	}
 
 	if ret == nil {
