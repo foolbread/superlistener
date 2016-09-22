@@ -223,3 +223,28 @@ func Test_ProcessLogStderr(t *testing.T) {
 		t.Error("data parse error!")
 	}
 }
+
+func Test_ProcessCommunicationStdout(t *testing.T) {
+	var tdata string = "processname:cat groupname:cat pid:2766\ndata"
+	p, err := protocol.Unmarshal(protocol.PROCESS_COMMUNICATION_STDOUT, tdata)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	pa := p.(*protocol.ProcessCommunicationStdout)
+	if !strings.EqualFold(pa.ProcessName, "cat") {
+		t.Error("processname parse error!")
+	}
+
+	if !strings.EqualFold(pa.GroupName, "cat") {
+		t.Error("groupname parse error!")
+	}
+
+	if pa.Pid != 2766 {
+		t.Error("pid parse error!")
+	}
+
+	if !strings.EqualFold(pa.Data, "data") {
+		t.Error("data parse error!")
+	}
+}
