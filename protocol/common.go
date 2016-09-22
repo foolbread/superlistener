@@ -50,12 +50,14 @@ const (
 	REMOTE_COMMUNICATION_CNT         = 1
 	PROCESS_LOG_STDOUT_CNT           = 3
 	PROCESS_LOG_STDERR_CNT           = 3
+	PROCESS_COMMUNICATION_STDOUT_CNT = 3
 )
 
 const (
-	REMOTE_COMMUNICATION_LINE = 2
-	PROCESS_LOG_STDOUT_LINE   = 2
-	PROCESS_LOG_STDERR_LINE   = 2
+	REMOTE_COMMUNICATION_LINE         = 2
+	PROCESS_LOG_STDOUT_LINE           = 2
+	PROCESS_LOG_STDERR_LINE           = 2
+	PROCESS_COMMUNICATION_STDOUT_LINE = 2
 )
 
 func Unmarshal(event string, data string) (interface{}, error) {
@@ -85,6 +87,8 @@ func Unmarshal(event string, data string) (interface{}, error) {
 		ret = unmarshalProcessLogStdout(data)
 	case PROCESS_LOG_STDERR:
 		ret = unmarshalProcessLogStderr(data)
+	case PROCESS_COMMUNICATION_STDOUT:
+		ret = unmarshalProcessCommunicationStdout(data)
 	}
 
 	if ret == nil {
