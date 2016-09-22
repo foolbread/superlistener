@@ -14,7 +14,7 @@ type RemoteCommunication struct {
 
 func unmarshalRemoteCommunication(data string) *RemoteCommunication {
 	fields := strings.Split(data, SPLIT_MUTILLINE)
-	if len(fields) != PROCESS_REMOTE_COMMUNICATION_CNT {
+	if len(fields) != PROCESS_REMOTE_COMMUNICATION_LINE {
 		return nil
 	}
 
