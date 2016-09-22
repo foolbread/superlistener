@@ -51,6 +51,7 @@ const (
 	PROCESS_LOG_STDOUT_CNT           = 3
 	PROCESS_LOG_STDERR_CNT           = 3
 	PROCESS_COMMUNICATION_STDOUT_CNT = 3
+	PROCESS_COMMUNICATION_STDERR_CNT = 3
 )
 
 const (
@@ -58,6 +59,7 @@ const (
 	PROCESS_LOG_STDOUT_LINE           = 2
 	PROCESS_LOG_STDERR_LINE           = 2
 	PROCESS_COMMUNICATION_STDOUT_LINE = 2
+	PROCESS_COMMUNICATION_STDERR_LINE = 2
 )
 
 func Unmarshal(event string, data string) (interface{}, error) {
@@ -89,6 +91,8 @@ func Unmarshal(event string, data string) (interface{}, error) {
 		ret = unmarshalProcessLogStderr(data)
 	case PROCESS_COMMUNICATION_STDOUT:
 		ret = unmarshalProcessCommunicationStdout(data)
+	case PROCESS_COMMUNICATION_STDERR:
+		ret = unmarshalProcessCommunicationStderr(data)
 	}
 
 	if ret == nil {
