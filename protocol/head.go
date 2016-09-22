@@ -9,8 +9,9 @@ import (
 )
 
 const (
-	SPLIT_LINE  = " "
-	SPLIT_FIELD = ":"
+	SPLIT_LINE      = " "
+	SPLIT_FIELD     = ":"
+	SPLIT_MUTILLINE = "\n"
 )
 
 type supervisorHead struct {
