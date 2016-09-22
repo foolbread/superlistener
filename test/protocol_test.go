@@ -312,3 +312,16 @@ func Test_Tick3600(t *testing.T) {
 		t.Error("when parse error!")
 	}
 }
+
+func Test_ProcessGroupAdded(t *testing.T) {
+	var tdata string = "groupname:cat"
+	p, err := protocol.Unmarshal(protocol.PROCESS_GROUP_ADDED, tdata)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	pa := p.(*protocol.ProcessGroupAdded)
+	if !strings.EqualFold(pa.GroupName, "cat") {
+		t.Error("groupname parse error!")
+	}
+}
